@@ -169,9 +169,15 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
             self.picker.videoQuality = UIImagePickerControllerQualityTypeMedium;
         }
 
-        if ([[self.options objectForKey:@"compression"] isEqualToString:@"720p"]) {
-            if (@available(iOS 11.0, *)) {
+        if (@available(iOS 11.0, *)) {
+            if ([[self.options objectForKey:@"compression"] isEqualToString:@"720p"]) {
                 self.picker.videoExportPreset = AVAssetExportPreset1280x720;
+            } 
+            else if ([[self.options objectForKey:@"compression"] isEqualToString:@"540p"]) {
+                self.picker.videoExportPreset = AVAssetExportPreset960x540;
+            } 
+            else if ([[self.options objectForKey:@"compression"] isEqualToString:@"480p"]) {
+                self.picker.videoExportPreset = AVAssetExportPreset640x480;
             }
         }
 

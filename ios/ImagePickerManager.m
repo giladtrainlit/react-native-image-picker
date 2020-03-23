@@ -169,6 +169,12 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
             self.picker.videoQuality = UIImagePickerControllerQualityTypeMedium;
         }
 
+        if ([[self.options objectForKey:@"compression"] isEqualToString:@"720p"]) {
+            if (@available(iOS 11.0, *)) {
+                self.picker.videoExportPreset = AVAssetExportPreset1280x720;
+            }
+        }
+
         id durationLimit = [self.options objectForKey:@"durationLimit"];
         if (durationLimit) {
             self.picker.videoMaximumDuration = [durationLimit doubleValue];
